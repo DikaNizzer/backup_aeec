@@ -1,0 +1,12 @@
+[28-Jul-2022 10:05:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/aeec/public_html/daftar/client/profile/profile.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/aeec/public_html/daftar/client/profile/profile.php on line 14
+[29-Jul-2022 02:10:18 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/aeec/public_html/daftar/client/profile/edit_profile.php:88
+Stack trace:
+#0 {main}
+  thrown in /home/aeec/public_html/daftar/client/profile/edit_profile.php on line 88
+[01-Aug-2022 01:04:31 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/aeec/public_html/daftar/client/profile/edit_profile.php:88
+Stack trace:
+#0 {main}
+  thrown in /home/aeec/public_html/daftar/client/profile/edit_profile.php on line 88

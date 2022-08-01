@@ -1,0 +1,19 @@
+[28-Jul-2022 14:42:19 UTC] PHP Warning:  unlink(../../assets/NPWP/62e260bb5028e.pdf): No such file or directory in /home/aeec/public_html/daftar/client/formregis/korporat_upload_excel.php on line 21
+[29-Jul-2022 02:10:50 UTC] PHP Warning:  unlink(../../assets/NPWP/62e3416a0787e.xlsx): No such file or directory in /home/aeec/public_html/daftar/client/formregis/kolektif_upload_excel.php on line 21
+[01-Aug-2022 01:01:47 UTC] PHP Warning:  unlink(../../assets/NPWP/62e72528de8ed.pdf): No such file or directory in /home/aeec/public_html/daftar/client/formregis/kolektif_upload_excel.php on line 21
+[01-Aug-2022 01:02:21 UTC] PHP Warning:  unlink(../../assets/NPWP/62e72528de8ed.pdf): No such file or directory in /home/aeec/public_html/daftar/client/formregis/korporat_upload_excel.php on line 21
+[01-Aug-2022 01:03:32 UTC] PHP Warning:  unlink(../../assets/NPWP/62e7261da1e77.pdf): No such file or directory in /home/aeec/public_html/daftar/client/formregis/korporat_upload_excel.php on line 21
+[01-Aug-2022 01:05:17 UTC] PHP Warning:  unlink(../../assets/NPWP/62e72664ef16b.pdf): No such file or directory in /home/aeec/public_html/daftar/client/formregis/korporat_upload_excel.php on line 21
+[01-Aug-2022 01:10:39 UTC] PHP Warning:  unlink(../../assets/NPWP/62e727c0500a4.pdf): No such file or directory in /home/aeec/public_html/daftar/client/formregis/korporat_upload_excel.php on line 21
+[01-Aug-2022 14:09:32 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/aeec/public_html/daftar/client/formregis/confirm_3.php:183
+Stack trace:
+#0 {main}
+  thrown in /home/aeec/public_html/daftar/client/formregis/confirm_3.php on line 183
+[01-Aug-2022 14:17:01 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/aeec/public_html/daftar/client/formregis/confirm_2.php:206
+Stack trace:
+#0 {main}
+  thrown in /home/aeec/public_html/daftar/client/formregis/confirm_2.php on line 206
+[01-Aug-2022 14:18:38 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/aeec/public_html/daftar/client/formregis/confirm_2.php:220
+Stack trace:
+#0 {main}
+  thrown in /home/aeec/public_html/daftar/client/formregis/confirm_2.php on line 220

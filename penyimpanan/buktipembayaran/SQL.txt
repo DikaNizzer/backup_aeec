@@ -1,0 +1,87 @@
+CREATE VIEW admin_pembayaran AS
+SELECT
+pembayaran.ID_PEMBAYARAN,
+pembayaran.TGL_PEMBAYARAN,
+pembayaran.NOMINAL,
+pembayaran.BUKTI,
+pembayaran.STATUS,
+pendaftaran.ID_PENDAFTARAN,
+diskon.NAMA_DISKON
+FROM
+pembayaran,
+pendaftaran,
+diskon
+WHERE
+pembayaran.ID_PENDAFTARAN = pendaftaran.ID_PENDAFTARAN;
+
+INSERT INTO pembayaran VALUES (NULL, "REG0422002", "2022-05-12", 15000, "bukti.png", 1);
+
+SELECT p.*, a.ID_PENDAFTARAN, d.ID_DISKON 
+                                        FROM pembayaran p 
+                                        JOIN pendaftaran a ON p.ID_PENDAFTARAN = a.ID_PENDAFTARAN
+                                        JOIN diskon d  ON a.ID_DISKON = d.ID_DISKON;
+
+UPDATE pendaftaran SET virtual_acc = 1122
+where id_pendaftaran = "REG0422001";
+
+SELECT pr.NAMA_PROGRAM, b.BATCH, pn.ID_PENDAFTARAN, c.ID_CLIENT, pe*
+FROM program pr, batch_program b, pendaftaran pn, client c, pembayaran pe
+WHERE pr.ID_PROGRAM = b.ID_PROGRAM
+AND pn.ID_BATCH = b.ID_BATCH
+and pn.ID_PENDAFTARAN = pe.ID_PENDAFTARAN
+AND pn.ID_CLIENT = c.ID_CLIENT;
+
+SELECT pr.NAMA_PROGRAM, pn.ID_PENDAFTARAN, c.ID_CLIENT, b.TGL_MULAI, b.TGL_BERAKHIR
+                                      FROM program pr, batch_program b, pendaftaran pn, client c
+                                      WHERE pr.ID_PROGRAM = b.ID_PROGRAM
+                                      AND pn.ID_BATCH = b.ID_BATCH
+                                      AND pn.ID_CLIENT = c.ID_CLIENT
+                                      
+SELECT pr.NAMA_PROGRAM, b.BATCH, pn.ID_PENDAFTARAN, c.ID_CLIENT, pe.NOMINAL, pe.TGL_PEMBAYARAN, pe.BUKTI, pe.STATUS
+                                    FROM program pr, batch_program b, pendaftaran pn, client c, pembayaran pe, diskon d
+                                    WHERE pr.ID_PROGRAM = b.ID_PROGRAM
+                                    AND pn.ID_PENDAFTARAN = pe.ID_PENDAFTARAN
+                                    AND pn.ID_DISKON = d.ID_DISKON
+                                    AND pn.ID_BATCH = b.ID_BATCH
+                                    AND pn.ID_CLIENT = c.ID_CLIENT
+                                    
+SELECT pr.NAMA_PROGRAM, b.TGL_MULAI, b.TGL_BERAKHIR, b.WAKTU_MULAI, b.WAKTU_BERAKHIR
+fROM program pr, batch_program b, pendaftaran pn, client c
+WHERE pr.ID_PROGRAM = b.ID_PROGRAM
+AND pn.ID_BATCH = b.ID_BATCH
+AND pn.ID_CLIENT = c.ID_CLIENT
+AND b.TGL_BERAKHIR < SYSDATE;
+
+UPDATE batch_program SET TGL_MULAI = '2022-05-29'
+WHERE id_batch = "DL001";
+
+UPDATE batch_program SET TGL_BERAKHIR = '2022-05-29'
+WHERE id_batch = "DL001";
+
+INSERT INTO pembayaran (ID_PENDAFTARAN, NOMINAL) 
+VALUES ('REG0522001', 2200000);
+
+SELECT pr.NAMA_PROGRAM, b.BATCH, pn.ID_PENDAFTARAN, pn.VIRTUAL_ACC, c.ID_CLIENT, pe.ID_PEMBAYARAN, pe.NOMINAL, pe.TGL_PEMBAYARAN, pe.BUKTI, pe.STATUS
+FROM program pr, batch_program b, pendaftaran pn, client c, pembayaran pe
+WHERE pr.ID_PROGRAM = b.ID_PROGRAM
+AND pn.ID_PENDAFTARAN = pe.ID_PENDAFTARAN
+AND pn.ID_BATCH = b.ID_BATCH
+AND pn.ID_CLIENT = c.ID_CLIENT
+                        
+SELECT *
+from pembayaran 
+
+SELECT p.ID_PENDAFTARAN, p.TGL_PENDAFTARAN, p.STATUS, p.VIRTUAL_ACC,
+C.NAMA, b.NAMA_CLASS
+FROM pendaftaran p 
+JOIN batch_program b ON p.ID_BATCH = b.ID_BATCH
+JOIN client c ON p.ID_CLIENT = c.ID_CLIENT
+
+//riwayat pembayaran
+SELECT pr.NAMA_PROGRAM, b.BATCH, pn.ID_PENDAFTARAN, pn.VIRTUAL_ACC, c.ID_CLIENT, 
+pe.ID_PEMBAYARAN, pe.NOMINAL, pe.TGL_PEMBAYARAN, pe.BUKTI, pe.STATUS
+FROM program pr, batch_program b, pendaftaran pn, CLIENT c, pembayaran pe
+WHERE pr.ID_PROGRAM = b.ID_PROGRAM
+AND pn.ID_BATCH = b.ID_BATCH
+AND pn.ID_PENDAFTARAN = pe.ID_PENDAFTARAN
+AND pn.ID_CLIENT = c.ID_CLIENT

@@ -1,0 +1,4 @@
+[28-Jul-2022 11:39:28 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/aeec/public_html/daftar/admin/pendaftaran/detail.php:74
+Stack trace:
+#0 {main}
+  thrown in /home/aeec/public_html/daftar/admin/pendaftaran/detail.php on line 74
