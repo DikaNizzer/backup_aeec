@@ -141,32 +141,57 @@ $em        = $row_em['EMONEY'];
                     <?php
                     if(mysqli_num_rows($client)>0){
                     ?>
-                      <div class="row g-3 mt-0 mb-3 ">                  
-                                        <div class="col-6">
-                                        <h6 class="mb-1">ID Peserta</h6>
-                                        <d6><?=$row_client['ID_CLIENT'];?></d6>
+                      <div class="row g-3 mt-0 mb-3 "> 
+                                         <!--KIRI-->
+                            <div class="col-6">
+                            <h6 class="mb-1">ID Peserta</h6>
+                            <d6><?=$row_client['ID_CLIENT'];?></d6>
 
-                                        <h6 class=" mt-4 mb-1">Nama Lengkap</h6>
-                                        <d6><?=$row_client['NAMA'];?></d6>
+                            <h6 class=" mt-4 mb-1">Nama Lengkap</h6>
+                            <d6><?=$row_client['NAMA'];?></d6>
 
-                                        <h6 class=" mt-4 mb-1">Email</h6>
-                                        <d6><?=$row_client['EMAIL'];?></d6>
+                            <h6 class=" mt-4 mb-1">Email</h6>
+                            <d6><?=$row_client['EMAIL'];?></d6>
 
-                                        <h6 class=" mt-4 mb-1">No. Telepon</h6>
-                                        <d6><?=$row_client['NO_TELP'];?></d6>
+                            <h6 class=" mt-4 mb-1">No. Telepon</h6>
+                            <d6><?=$row_client['NO_TELP'];?></d6>
 
-                                        <h6 class=" mt-4 mb-1">Jenis Kelamin</h6>
-                                        <d6><?php 
-                                             if($row_client['JK'] == 1){
-                                                echo 'Perempuan';
-                                             }else{
-                                                echo 'Laki-laki';
-                                             }
-                                        ?></d6>
+                            <h6 class=" mt-4 mb-1">Jenis Kelamin</h6>
+                            <d6><?php 
+                                    if($row_client['JK'] == 1){
+                                    echo 'Perempuan';
+                                    }else{
+                                    echo 'Laki-laki';
+                                    }
+                            ?></d6>
 
-                                        <h6 class=" mt-4 mb-1">NPWP</h6>
-                                        <d6><?=$row_client['NPWP'];?></d6>
-                                        </div>
+                            <h6 class=" mt-4 mb-1">NPWP</h6>
+                            <d6><?=$row_client['NPWP'];?></d6>
+
+                            <h6 class=" mt-4 mb-1">Bersedia Menerima Email Penawaran</h6>
+                            <d6>
+                            <?php 
+                                    if($row_client['AEEC_EMAIL'] == 1){
+                                    echo 'Iya';
+                                    }else{
+                                    echo 'Tidak';
+                                    }
+                            ?>
+                            </d6>
+
+                            <h6 class=" mt-4 mb-1">Bersedia Menerima Email Newsletter</h6>
+                            <d6>
+                            <?php 
+                                    if($row_client['AEEC_NEWSLETTER'] == 1){
+                                    echo 'Iya';
+                                    }else{
+                                    echo 'Tidak';
+                                    }
+                            ?>
+                            </d6>
+
+
+                            </div>
 
                                         <div class="col-6">
                                         <h6 class="mb-1">Alamat Rumah</h6>

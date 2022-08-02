@@ -129,12 +129,59 @@ $client = mysqli_query($mysqli,"SELECT * FROM client where ID_USER = '$iduser'")
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
+                                                <label for="first-name-vertical">Bersedia Menerima Email Penawaran</label>
+                                                    <select class="form-select" name="notif_email" required>
+                                                        
+                                                        <?php 
+                                                            if($data_peserta['AEEC_EMAIL'] == 1){
+                                                            echo '<option value="1" selected>Ya</option>
+                                                                    <option value="0">Tidak</option>';
+                                                            }else{
+                                                            echo '<option value="1" >Ya</option>
+                                                                    <option value="0" selected>Tidak</option>';
+                                                            }
+                                                        ?>
+                                                    </select>
+
+                                                    
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-vertical">Bersedia Menerima Email Newsletter</label>
+                                                    <select class="form-select" name="newsletter" required>
+                                                        
+                                                        <?php 
+                                                            if($data_peserta['AEEC_NEWSLETTER'] == 1){
+                                                            echo '<option value="1" selected>Ya</option>
+                                                                    <option value="0">Tidak</option>';
+                                                            }else{
+                                                            echo '<option value="1" >Ya</option>
+                                                                    <option value="0" selected>Tidak</option>';
+                                                            }
+                                                        ?>
+                                                    </select>
+
+                                                    
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
                                                 <label for="first-name-vertical">Jenis Kelamin</label>
                                                     <select class="form-select" name="jk" required>
-                                                        <option >Pilih </option>
-	                                                    <option value="1">Perempuan</option>
-	                                                    <option value="0">Laki-Laki</option>
+                                                        
+                                                        <?php 
+                                                            if($data_peserta['JK'] == 1){
+                                                            echo '<option value="1" selected>Perempuan</option>
+                                                                    <option value="0">Laki-Laki</option>';
+                                                            }else{
+                                                            echo '<option value="1" >Perempuan</option>
+                                                                    <option value="0" selected>Laki-Laki</option>';
+                                                            }
+                                                        ?>
                                                     </select>
+
+                                                    
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -211,6 +258,8 @@ $client = mysqli_query($mysqli,"SELECT * FROM client where ID_USER = '$iduser'")
                     $alamat_npwp  = $_POST['alamat_npwp'];
                     $instansi     = $_POST['instansi'];
                     $jabatan      = $_POST['jabatan'];
+                    $notif_email = $_POST['notif_email'];
+                    $newsletter = $_POST['newsletter'];
                   
 
                     $berkas         = $_FILES['berkas']['name'];
@@ -246,8 +295,11 @@ $client = mysqli_query($mysqli,"SELECT * FROM client where ID_USER = '$iduser'")
                                                                         JABATAN='$jabatan'
                                                                     WHERE ID_USER='$iduser'");
 
-                        $update_user        = mysqli_query($mysqli,"UPDATE user SET EMAIL='$email'
-                                                                    WHERE ID_USER='$id_user'");
+                        $update_user        = mysqli_query($mysqli,"UPDATE `user` SET `EMAIL` = '$email', 
+                                                                    `AEEC_EMAIL` = '$notif_email', `AEEC_NEWSLETTER` = '$newsletter' 
+                                                                    WHERE (`ID_USER` = '$id_user')");
+                                                                    
+
                      }
 
               
