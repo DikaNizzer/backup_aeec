@@ -83,10 +83,13 @@ if (isset($_POST["import"])) {
         $ekstensiupload = strtolower (end($ekstensiupload));
 
          //upload
-        //Ganti Nama
+        //Ganti NamaMh
         $namafotobaru= uniqid();
         $namafotobaru.= ".";
         $namafotobaru.=$ekstensiupload;
+
+        // move_uploaded_file($tempat, '../../assets/excel/'.$namafotobaru);
+
 
         $targetPath = '../../assets/excel/' . $namafotobaru;
         move_uploaded_file($tempat, $targetPath);
@@ -97,11 +100,12 @@ if (isset($_POST["import"])) {
         $excelSheet = $spreadSheet->getActiveSheet();
         $spreadSheetAry = $excelSheet->toArray();
         $sheetCount = count($spreadSheetAry);
-
-        if($sheetCount < 5){
+        // var_dump($sheetCount);
+        // exit;
+        if(count($spreadSheetAry) < 12){
             echo "<script> 
-            alert('Data Yang Anda Masukkan Dalam Excel Kurang Dari dari 4 Peserta, Mohon Lengkapi Data !');
-            document.location.href = 'kolektif_upload_excel.php?idprog=$idprog&idbatch=$idbatch';
+            alert('Data Yang Anda Masukkan Dalam Excel Kurang Dari ari 10 Peserta, Mohon Lengkapi Data !');
+            document.location.href = 'korporat_upload_excel.php?idprog=$idprog&idbatch=$idbatch';
             </script>";
             exit;
         }
@@ -163,6 +167,7 @@ if (isset($_POST["import"])) {
                     $alumni = 1;
                 }
             }
+            
             $fakultas = "";
             $idfak = "";
             if (isset($spreadSheetAry[$i][11])) {
@@ -223,12 +228,9 @@ if (isset($_POST["import"])) {
                 }
             }
             
-
             
-            
-            if ($name!=null & $email!=null) {
-                
-                // input user
+            if (!empty($name)) {
+                // Memasukkan Ke Usser
                 $password = password_hash($pass, PASSWORD_DEFAULT);
                 $queri = "INSERT INTO `user` (`EMAIL`, `PASSWORD`, `ROLE`, `AEEC_EMAIL`, `AEEC_NEWSLETTER`) VALUES ('$email', '$password', 'user', '$notif_email', '$notif_news')";
                 $hasil = mysqli_query($conn, $queri);
@@ -238,10 +240,9 @@ if (isset($_POST["import"])) {
                 $row_id     = $id->fetch_assoc();
                 $id_user = $row_id['ID_USER'];
 
-                // input client
+                // Memasukkan ke Client
                 // $query = "INSERT INTO client (`ID_USER`, `NAMA`, `JK`, `NO_TELP`, `NPWP`, `ALAMAT_NPWP`, `ALAMAT_RUMAH`, `INSTANSI`,`JABATAN`, `ALUMNI`, `ID_FAKULTAS`) 
                 // VALUES('$id_user','$name','$jk','$notelp','$npwp','$alamatnpwp','$alamatrumah','$instansi','$jabatan', '$alumni', '$idfak')";
-                
                 if($fakultas != null){
                     $client         = mysqli_query($conn, "INSERT INTO client (ID_USER, NAMA, JK, NO_TELP, NPWP, ALAMAT_NPWP, ALAMAT_RUMAH, INSTANSI, ALUMNI, ID_FAKULTAS, JABATAN) 
                                                              VALUES ('$id_user','$name', '$jk', '$notelp', '$npwp', '$alamatnpwp', '$alamatrumah', '$instansi', '$alumni','$idfak', '$jabatan')");
@@ -249,7 +250,6 @@ if (isset($_POST["import"])) {
                     $client         = mysqli_query($conn, "INSERT INTO client (ID_USER, NAMA, JK, NO_TELP, NPWP, ALAMAT_NPWP, ALAMAT_RUMAH, INSTANSI, ALUMNI, JABATAN) 
                                                              VALUES ('$id_user','$name', '$jk', '$notelp', '$npwp', '$alamatnpwp', '$alamatrumah', '$instansi', '$alumni', '$jabatan')");
                 }
-                
                 $paramType = "ssssssssss";
                 $jumlahInput = $sheetCount -2;
 
@@ -264,7 +264,8 @@ if (isset($_POST["import"])) {
                     $jabatan,
                     $alumni
                 );
-
+                // $insertId = $db->insert($query, $paramType, $paramArray);
+                // $query = "insert into tbl_info(name,description) values('" . $name . "','" . $description . "')";
                 // $result = mysqli_query($conn, $query);
 
                 // if (! empty($insertId)) {
@@ -273,7 +274,7 @@ if (isset($_POST["import"])) {
                     $type = "success";
                     $message = "Data Berhasil Dimasukkan";
 
-                    echo"<script>location='kolektif_tampil_excel.php?idprog=$idprog&idbatch=$idbatch&jenis=$type&pesan=$message&jumlah=$jumlahInput'</script>";
+                    echo"<script>location='korporat_tampil_excel_2.php?idprog=$idprog&idbatch=$idbatch&jenis=$type&pesan=$message&jumlah=$jumlahInput'</script>";
                 } else {
                     $type = "error";
                     $message = "Data Gagal Dimasukkan";
@@ -317,6 +318,7 @@ if (isset($_POST["import"])) {
     .fontawesome-icons .the-icon svg {
         font-size: 24px;
     }
+
         #response {
             padding: 10px;
             margin-top: 10px;
@@ -360,6 +362,8 @@ if (isset($_POST["import"])) {
                 <i class="bi bi-justify fs-3"></i>
             </a>
         </header>
+
+
 <!-- BAGIAN UTAMA CODING [MULAI main-content] -->
 
 <!-- HALAMAN UTAMA -->
@@ -375,7 +379,7 @@ if (isset($_POST["import"])) {
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Pendaftaran</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Kolektif</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Korporat</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -392,37 +396,33 @@ if (isset($_POST["import"])) {
                         <div class="card">
                             <div class="card-header">
                         <h4 class="card-title">Mohon Isi File dengan Data yang Sudah Benar</h4>
-                        <p> Unduh Template File : <a href="../../assets/template/kolektif.xlsx"><i class="bi bi-file-arrow-down-fill fs-4"></i></a> </p>
+                        <p> Template File : <a href="../../assets/template/korporat.xlsx"><i class="bi bi-file-arrow-down-fill fs-4"></i></a> </p>
                     
                             <p>
                                 <b>Keterangan : </b>
                             </p>
                             <ul class="list-group">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>Data diri anda akan dihitung sebagai peserta</span>
+                                    <span>Anda yang mendaftarkan merupakan <b>bagian</b> dari peserta</span>
                                     <span class="badge bg-primary badge-pill badge-round ml-1">1</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>Anda tidak perlu memasukkan data diri anda ke dalam excel</span>
+                                    <span>Anda tidak perlu mengisi excel karena data diri anda sudah tercantum</span>
                                     <span class="badge bg-primary badge-pill badge-round ml-1">2</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>Pastikan data diri yang anda masukkan ke excel benar !</span>
-                                    <span class="badge bg-primary badge-pill badge-round ml-1">3</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <span>Pastikan anda mengisikan data sesuai dengan template yang tersedia</span>
-                                    <span class="badge bg-primary badge-pill badge-round ml-1">4</span>
+                                    <span class="badge bg-primary badge-pill badge-round ml-1">3</span>
                                 </li>
                             </ul>
 
                             <p class="me-1 mt-3 mb-0">Pastikan NPWP anda adalah NPWP perusahaan !</p>
-                            <a href="../../assets/NPWP/<?= $path_npwp ?>" class="btn btn-primary me-1 mt-0" target="_blank" rel="noopener noreferrer"><i class="bi bi-download"></i><span> NPWP Anda</span></a>
+                            <a href="../../assets/NPWP/<?=$path_npwp?>" class="btn btn-primary me-1 mt-0" target="_blank" rel="noopener noreferrer"><i class="bi bi-download"></i><span> NPWP Anda</span></a>
                             
                             <p class="me-1 mt-3 mb-0">Silahkan upload ulang NPWP anda jika tidak sesuai</p>
                             <button class="btn btn-success" data-bs-toggle="modal"
                                 data-bs-target="#exampleModalCenter"><i class="bi bi-arrow-counterclockwise"></i>Ganti NPWP Anda</button>
-                            
+                    
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -514,9 +514,21 @@ if (isset($_POST["import"])) {
                         </div>
                     </form>
                 </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary"
+                        data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+                    <button type="button" class="btn btn-primary ml-1" data-bs-dismiss="modal">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Accept</span>
+                    </button>
+                </div> -->
             </div>
         </div>
     </div>
+
 
 
     <script src="../../assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>

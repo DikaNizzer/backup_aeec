@@ -127,7 +127,10 @@ foreach($program as $hasil){
                                                 <h1 class="price"><i class="bi bi-person-square"></i></h1>
                                                 
                                                 <div class="card-footer">
-                                                    <a href="korporat_cek.php?idprog=<?=$hasil['ID_PROGRAM']?>&idbatch=<?=$_GET['idbatch'] ?>"><button class="btn btn-primary btn-block">Daftar</button></a>
+                                                    <!-- <a href="korporat_cek.php?idprog=<?=$hasil['ID_PROGRAM']?>&idbatch=<?=$_GET['idbatch'] ?>"><button class="btn btn-primary btn-block">Daftar</button></a> -->
+                                                    <!-- Button Modal -->
+                                                    <button class="btn btn-primary btn-block" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModalCenter">Daftar</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -142,22 +145,57 @@ foreach($program as $hasil){
                     </section>
                     <!-- Basic Tables end -->
                 </div>
-
-
-<!-- BAGIAN FOOTER -->
-<!-- <footer>
-    <div class="footer clearfix mb-0 text-muted">
-        <div class="float-start">
-            <p>2021 &copy; Mazer</p>
-        </div>
-        <div class="float-end">
-            <p>Crafted with <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span>
-                by <a href="https://ahmadsaugi.com">Saugi</a></p>
-        </div>
-    </div>
-</footer> -->
         </div>
             <!-- END HALAMAN UTAMA -->
+        </div>
+    </div>
+
+        <!-- Modal Pilihan Korporat -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+            role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Apakah anda ikut mendaftar program ini ?
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-6" style="border-style: groove;">
+                                    <div class="m-3">
+                                        <label class="form-label tex-center">Tekan tombol berikut jika <b>tidak ikut</b> mendaftar</label>
+                                        <a href="korporat_cek.php?idprog=<?=$hasil['ID_PROGRAM']?>&idbatch=<?=$_GET['idbatch'] ?>">
+                                        <button class="btn btn-primary btn-block">Daftar</button></a>
+                                    </div>
+                                </div>
+
+                                <div class="col-6" style="border-style: groove;">
+                                    <div class="m-3">
+                                        <label class="form-label ">Tekan tombol berikut jika <b>ikut</b> mendaftar</label>
+                                        <a href="korporat_cek_2.php?idprog=<?=$hasil['ID_PROGRAM']?>&idbatch=<?=$_GET['idbatch'] ?>">
+                                        <button class="btn btn-success btn-block">Daftar</button></a>
+                                    </div>
+                                </div>
+                                               
+                                
+
+                                <div class="col-12 mt-3 d-flex justify-content-end">
+                                    <button type="button" class="btn btn-light-secondary me-1 mb-1"
+                                        data-bs-dismiss="modal">
+                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Tutup</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="../../assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>

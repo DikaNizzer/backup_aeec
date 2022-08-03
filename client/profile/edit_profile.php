@@ -282,8 +282,9 @@ $client = mysqli_query($mysqli,"SELECT * FROM client where ID_USER = '$iduser'")
                                                                         JABATAN='$jabatan', BERKAS_NPWP='$berkas'
                                                                     WHERE ID_USER='$iduser'");
 
-                         $update_user       = mysqli_query($mysqli,"UPDATE user SET EMAIL='$email'
-                                                                    WHERE ID_USER='$id_user'");
+                         $update_user       = mysqli_query($mysqli,"UPDATE `user` SET `EMAIL` = '$email', 
+                                                            `AEEC_EMAIL` = '$notif_email', `AEEC_NEWSLETTER` = '$newsletter' 
+                                                            WHERE (`ID_USER` = '$id_user')");
 
                         
 

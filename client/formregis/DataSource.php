@@ -22,11 +22,11 @@ class DataSource
     // when using above 7.1.0, declare the below constants as private
     const HOST = 'localhost';
 
-    const USERNAME = 'aeec_pendaftaran';
+    const USERNAME = 'root';
 
-    const PASSWORD = 'aeec@2022!';
+    const PASSWORD = '';
 
-    const DATABASENAME = 'aeec_pendaftaran';
+    const DATABASENAME = 'aeec_backup';
 
     private $conn;
 
