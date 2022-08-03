@@ -196,7 +196,7 @@ $iduser = $_SESSION["user"]["ID_USER"];
                                         <th>No Telp</th>
                                         <th>NPWP</th>
                                         <th>Alamat NPWP </th>
-                                        <th>Alamat Rumah </th>
+                                        <th>Alamat Pengiriman Sertifikat</th>
                                         <th>Instansi </th> 
                                         <th>Jabatan </th>                                
                                         <th>Alumni</th>

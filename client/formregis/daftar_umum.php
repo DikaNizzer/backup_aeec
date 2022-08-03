@@ -132,16 +132,16 @@ foreach($program as $hasil){
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">NPWP</label>
+                                                <label for="first-name-vertical">Alamat Pengiriman Sertifikat</label>
                                                 <input type="text" id="first-name-vertical" class="form-control"
-                                                    name="npwp" placeholder="NPWP" required>
+                                                    name="alamat_rumah" placeholder="Alamat Pengiriman Sertifikat" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">Alamat Rumah</label>
+                                                <label for="first-name-vertical">NPWP</label>
                                                 <input type="text" id="first-name-vertical" class="form-control"
-                                                    name="alamat_rumah" placeholder="Alamat Rumah" required>
+                                                    name="npwp" placeholder="NPWP" required>
                                             </div>
                                         </div>
                                         <div class="col-12">

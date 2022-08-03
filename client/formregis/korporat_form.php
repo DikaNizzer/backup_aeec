@@ -125,17 +125,17 @@ foreach($program as $hasil){
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">NPWP</label>
+                                                <label for="first-name-vertical">Alamat Pengiriman Sertifikat</label>
                                                 <input type="text" id="first-name-vertical" class="form-control"
-                                                    name="no_npwp" placeholder="NPWP" required>
-                                                <p style="color:red"><i>Pastikan NPWP yang anda masukkan adalan npwp perusahaan anda</i></p>
+                                                    name="alamat_rumah" placeholder="Alamat Pengiriman Sertifikat" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">Alamat Rumah</label>
+                                                <label for="first-name-vertical">NPWP</label>
                                                 <input type="text" id="first-name-vertical" class="form-control"
-                                                    name="alamat_rumah" placeholder="Alamat Rumah" required>
+                                                    name="no_npwp" placeholder="NPWP" required>
+                                                <p style="color:red"><i>Pastikan NPWP yang anda masukkan adalah npwp perusahaan anda</i></p>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -143,7 +143,7 @@ foreach($program as $hasil){
                                                 <label for="first-name-vertical">Alamat NPWP</label>
                                                 <input type="text" id="first-name-vertical" class="form-control"
                                                     name="alamat_npwp" placeholder="Alamat NPWP" required>
-                                                <p style="color:red"><i>Pastikan NPWP yang anda masukkan adalan npwp perusahaan anda</i></p>
+                                                <p style="color:red"><i>Pastikan Alamat NPWP yang anda masukkan adalah alamat npwp perusahaan anda</i></p>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -202,7 +202,7 @@ foreach($program as $hasil){
                                         <div class="form-group ">
                                         <label for="exampleInputPassword1">Berkas NPWP</label>
                                         <input type="file" name="npwp"class="form-control" required >
-                                        <p style="color:red"><i>Pastikan NPWP yang anda masukkan adalan npwp perusahaan anda</i></p>
+                                        <p style="color:red"><i>Pastikan NPWP yang anda masukkan adalah npwp perusahaan anda</i></p>
                                         </div>
                                       
                                         

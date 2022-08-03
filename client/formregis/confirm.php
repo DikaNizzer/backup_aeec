@@ -124,7 +124,7 @@ if(mysqli_num_rows($select_histori) > 0){
                                 <td><?= $ambil_data['ALAMAT_NPWP'] ?></td>
                             </tr>
                             <tr>
-                                <th>Alamat Rumah</th>    
+                                <th>Alamat Pengiriman Sertifikat</th>    
                                 <td><?= $ambil_data['ALAMAT_RUMAH'] ?></td>
                             </tr>
                             <tr>

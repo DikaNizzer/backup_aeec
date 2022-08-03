@@ -403,7 +403,7 @@ if (isset($_POST["import"])) {
                             </p>
                             <ul class="list-group">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>Anda yang mendaftarkan merupakan bukan bagian dari peserta. Jika anda bagian dari peserta, tambahkan data anda di Excel</span>
+                                    <span>Anda yang mendaftarkan merupakan bukan bagian dari peserta</span>
                                     <span class="badge bg-primary badge-pill badge-round ml-1">1</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">

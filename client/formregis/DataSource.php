@@ -26,7 +26,7 @@ class DataSource
 
     const PASSWORD = '';
 
-    const DATABASENAME = 'aeec_backup';
+    const DATABASENAME = 'aeec_pendaftaran';
 
     private $conn;
 

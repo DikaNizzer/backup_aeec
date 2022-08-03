@@ -150,7 +150,7 @@ $iduser = $_SESSION["user"]["ID_USER"];
                                 <td><?= $ambil_data['ALAMAT_NPWP'] ?></td>
                             </tr>
                             <tr>
-                                <th>Alamat Rumah</th>    
+                                <th>Alamat Pengiriman Sertifikat</th>    
                                 <td><?= $ambil_data['ALAMAT_RUMAH'] ?></td>
                             </tr>
                             <tr>

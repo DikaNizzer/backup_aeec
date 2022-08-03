@@ -1,7 +1,7 @@
 <?php
 
 //var untuk nyambung ke db
-$koneksi = mysqli_connect("localhost", "root", "", "aeec_backup");
+$koneksi = mysqli_connect("localhost", "root", "", "aeec_pendaftaran");
 
 
 //Function untuk kuery db dan mengembalikan hasilnya berupa array
