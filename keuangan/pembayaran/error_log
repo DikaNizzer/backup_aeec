@@ -1,0 +1,7 @@
+[28-Jul-2022 10:12:55 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/aeec/public_html/daftar/admin/pembayaran/pembayaran.php:104
+Stack trace:
+#0 {main}
+  thrown in /home/aeec/public_html/daftar/admin/pembayaran/pembayaran.php on line 104
+[28-Jul-2022 10:13:58 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/aeec/public_html/daftar/admin/pembayaran/verif.php on line 26
+[28-Jul-2022 10:18:00 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/aeec/public_html/daftar/admin/pembayaran/verif.php on line 26
+[28-Jul-2022 10:20:17 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/aeec/public_html/daftar/admin/pembayaran/verif.php on line 26

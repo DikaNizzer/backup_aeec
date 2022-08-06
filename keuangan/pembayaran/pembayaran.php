@@ -54,7 +54,7 @@ include_once('../../config/database.php');
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Non-Regular Class</h3>
+                <h3>Data Pembayaran</h3>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -62,73 +62,74 @@ include_once('../../config/database.php');
             </div>
         </div>
     </div>
-
     <!-- Basic Tables start -->
     <section class="section">
-    
-    <div class="card" >
+        <div class="card" >
             <div class="card-header">
-            <a href="insert_batch_non-reg.php" class="btn btn-success">Add +</a>
             </div>
             <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="table1" width="100%" cellspacing="0">
                     <thead> 
                         <tr>
-                            <th>ID</th>
-                            <th class="col-4">Nama Webinar</th> 
-                            <th>Tanggal </th> 
-                            <th>Waktu</th> 
-                            <th>Status</th>                     
-                            <th>Peserta</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>ID Pembayaran</th>
+                            <th>ID Pendaftaran</th>
+                            <th>Nama Program</th>                        
+                            <th>Tanggal Bayar</th>
+                            <th>Status</th>
+                            <th>Detail</th>
+                            <!-- <th>Nota</th> -->
                         </tr>
                     </thead>
+
+
                     <tbody>
-                        <?php
-                        $query_program = "SELECT * FROM batch_program WHERE ID_PROGRAM = '".$_GET['id']."' ";
-                        $tabel_program= mysqli_query($mysqli, $query_program);
-                        foreach ($tabel_program as $data_program) : 
+                    <?php
+                        $pembayaran = mysqli_query($mysqli, "SELECT  pay.*, b.*
+                                                             FROM pembayaran pay JOIN pendaftaran p
+                                                             ON pay.ID_PENDAFTARAN = p.ID_PENDAFTARAN
+                                                             JOIN batch_program b
+                                                             ON p.ID_BATCH = b.ID_BATCH");
+                        
+                        foreach ($pembayaran as $data_bayar) : 
                         ?>
                         <tr>
-                            <td><?php echo $data_program['ID_BATCH']; ?></td>
-                            <td><?php echo $data_program['NAMA_CLASS']; ?></td>   
-                            <td><?php echo $data_program['TGL_MULAI']; ?></td>     
-                            <td><?php 
-                            echo $data_program['WAKTU_MULAI'].' - '.$data_program['WAKTU_BERAKHIR']; 
-                            ?></td>  
-                            <td> 
-                                <?php 
-                                if($data_program['STATUS']=='1'){?> 
-                                <a href="change_status.php?id=<?php echo $data_program['ID_BATCH']; ?>">
-                                     <font color="success"><i><b>Active</b></i></font>
-                                </a>
-                                <?php } else{ ?> 
-                                <a href="change_status.php?id=<?php echo $data_program['ID_BATCH']; ?>">
-                                     <font color="grey"><i><b>Non-active</b></i></font></a>
-                               </a>
-                                <?php } ?>  
-                           </td>    
+                            <td><?php echo $data_bayar['ID_PEMBAYARAN'];?></td>
+                            <td><?php echo $data_bayar['ID_PENDAFTARAN'];?></td>
+                            <td><?php echo $data_bayar['NAMA_CLASS'];?></td>
+                            <td><?php echo $data_bayar['TGL_PEMBAYARAN'];?></td>  
                             <td>
-                            <a href="../peserta/tabelpeserta.php?idbatch=<?=$data_program['ID_BATCH']?>" class="btn btn-primary">Show</a>
+                                <?php
+                                $cek_status = mysqli_query($mysqli,"SELECT * FROM pembayaran WHERE ID_PEMBAYARAN = '".$data_bayar['ID_PEMBAYARAN']."'");
+                                $cek        = $cek_status->fetch_assoc();
+                                if($cek['STATUS']=='1'){
+                                    ?>
+                                    <a href="verif.php?id=<?php echo $data_bayar['ID_PEMBAYARAN']; ?>&status=<?= $cek['STATUS'] ?>"><font color="success"><i><b>Verifed</b></i></font></a>
+                                    <?php
+                                    }else{
+                                    ?>
+                                     <a href="verif.php?id=<?php echo $data_bayar['ID_PEMBAYARAN']; ?>&status=<?= $cek['STATUS'] ?>"><font color="grey"><i><b>Unverifed</b></i></font></a>
+                                    <?php
+                                    }
+                                    ?>
                             </td>
                             <td>
-                            <a href="edit_batch_non-reg.php?id=<?php echo $data_program['ID_BATCH'];?>" class="btn btn-warning">Edit</a>
-                            </td>
-                            <td>
-                            <a href="delete_batch.php?id=<?php echo $data_program['ID_BATCH'];?>" class="btn btn-danger">Delete</a>
-                            </td>              
+                                <a href="detail.php?id=<?php echo $data_bayar['ID_PEMBAYARAN']; ?>&iddaftar=<?= $data_bayar['ID_PENDAFTARAN']; ?>" class="btn btn-primary">Detail</a>
+                            </td>    
+                            <!-- <td>
+                                <a href="nota.php?id=<?php echo $data_bayar['ID_PEMBAYARAN']; ?>" class="btn btn-primary">Nota</a>
+                            </td>           -->
                         </tr>   
                         <?php
-                       endforeach
-                    ?>                   
-                    </tbody>                 
+                        endforeach
+                        ?>                   
+                    </tbody>
                     </div>
 
                 </table>
             </div>
         </div>
+
     </section>
     <!-- Basic Tables end -->
 </div>

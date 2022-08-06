@@ -68,6 +68,12 @@ include_once('../../config/database.php');
     $query_batch = "SELECT * FROM batch_program WHERE ID_BATCH = '".$_GET['id']."' ";
     $tabel_batch = mysqli_query($mysqli, $query_batch);    
     $data_batch  = $tabel_batch->fetch_assoc();  
+
+    $ppn        = $data_batch['B_PPN'];
+    
+    $individu_awal = (100/(100 + $ppn))*$data_batch['B_INDIVIDU'];                 
+    $kolektif_awal = (100/(100 + $ppn))*$data_batch['B_KOLEKTIF'];
+    $korporat_awal = (100/(100 + $ppn))*$data_batch['B_KORPORAT'];
     ?>
      <section id="basic-vertical-layouts">
         <div class="row match-height">
@@ -124,6 +130,41 @@ include_once('../../config/database.php');
                                                     name="waktu_berakhir" value="<?php echo $data_batch['TGL_BERAKHIR'];?>" required>
                                             </div>
                                         </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-vertical">Harga Individu (sebelum PPN)</label>
+                                                <input type="text" id="first-name-vertical" class="form-control"
+                                                    name="individu" value="<?php echo  $individu_awal; ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-vertical">Harga Kolektif (sebelum PPN)</label>
+                                                <input type="text" id="first-name-vertical" class="form-control"
+                                                    name="kolektif" value="<?php echo  $kolektif_awal; ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-vertical">Harga Korporat (sebelum PPN)</label>
+                                                <input type="text" id="first-name-vertical" class="form-control"
+                                                    name="korporat" value="<?php echo  $korporat_awal; ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-vertical">PPN</label>
+                                                <input type="text" id="first-name-vertical" class="form-control"
+                                                    name="ppn" value="<?php echo  $ppn; ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-vertical">Kuota</label>
+                                                <input type="number" id="first-name-vertical" class="form-control"
+                                                    name="kuota" value="<?php echo $data_batch['KUOTA'];?>" required>
+                                            </div>
+                                        </div>
                                         <div class="form-group  mb-0">
                                             <label for="exampleInputPassword1">Gambar</label>
                                             <input type="file" name="gambar"class="form-control">
@@ -151,6 +192,15 @@ include_once('../../config/database.php');
                     $tgl_mulai      = $_POST['tgl_mulai'];
                     $waktu_mulai    = $_POST['waktu_mulai'];
                     $waktu_berakhir = $_POST['waktu_berakhir'];
+                    $individu        = $_POST['individu'];
+                    $kolektif        = $_POST['kolektif'];
+                    $korporat        = $_POST['korporat'];
+                    $ppn             = $_POST['ppn'];
+                    $kuota           = $_POST['kuota'];
+
+                    $individu_ppn = $individu + ($individu * $ppn/100);
+                    $kolektif_ppn = $kolektif + ($kolektif  *  $ppn/100);
+                    $korporat_ppn = $korporat + ($korporat *  $ppn/100);
                   
 
                     $gambar         = $_FILES['gambar']['name'];
@@ -169,7 +219,8 @@ include_once('../../config/database.php');
                          $update_batch    = mysqli_query($mysqli,"UPDATE batch_program
                                                                   SET NAMA_CLASS='$nama_class',TGL_MULAI='$tgl_mulai',
                                                                       WAKTU_MULAI='$waktu_mulai', WAKTU_BERAKHIR='$waktu_berakhir',
-                                                                      IMAGE='$gambar'
+                                                                      B_INDIVIDU='$individu_ppn', B_KOLEKTIF='$koleltif_ppn', B_KORPORAT='$korporat_ppn', 
+                                                                      B_PPN='$ppn', KUOTA='$kuota', IMAGE='$gambar'
                                                                    WHERE ID_BATCH='" . $_GET['id'] ."'");
 
                         
@@ -177,7 +228,9 @@ include_once('../../config/database.php');
                      } else {
                         $update_batch    = mysqli_query($mysqli,"UPDATE batch_program
                                                                  SET NAMA_CLASS='$nama_class',TGL_MULAI='$tgl_mulai',
-                                                                    WAKTU_MULAI='$waktu_mulai', WAKTU_BERAKHIR='$waktu_berakhir'
+                                                                    WAKTU_MULAI='$waktu_mulai', WAKTU_BERAKHIR='$waktu_berakhir',
+                                                                    B_INDIVIDU='$individu_ppn', B_KOLEKTIF='$koleltif_ppn', B_KORPORAT='$korporat_ppn', 
+                                                                    B_PPN='$ppn', KUOTA='$kuota'
                                                                  WHERE ID_BATCH='" . $_GET['id'] ."'");
                      }
 

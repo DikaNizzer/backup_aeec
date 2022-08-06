@@ -80,11 +80,16 @@ if( isset($_POST["login"]) ) {
                 session_start();
                 $_SESSION["user"] = $user;
                 header("Location: ../dashboard/regular.php");
-            }else{
+            }else if ($user['ROLE'] == 'admin'){
                 // buat Session
                 session_start();
                 $_SESSION["admin"] = $user;
                 header("Location: ../../admin/layout/dashboard.php");
+            }else{
+                // buat Session
+                session_start();
+                $_SESSION["keuangan"] = $user;
+                header("Location: ../../keuangan/pembayaran/pembayaran.php");
             }
             exit;
         }else{
