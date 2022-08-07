@@ -104,7 +104,7 @@ if(mysqli_num_rows($select_histori) > 0){
                                        <!-- <p><span><i class="bi bi-instagram"></i></span>@airlangga_executive_edu</p> -->
                                         <div class="form-group mb-4">
                                         <label for="exampleInputPassword1">Bukti follow instagram / linkedin / youtube / twitter / facebook AEEC</label>
-                                        <input type="file" name="follow_ig"class="form-control" required >
+                                        <input type="file" name="bukti"class="form-control" accept='image/*' required >
                                         </div>
                                       
                                         
@@ -173,8 +173,8 @@ if(mysqli_num_rows($select_histori) > 0){
 
             
             //FOLLOW INSTAGRAM
-            $namafile1        = $_FILES['follow_ig']['name'];
-            $tempat1          = $_FILES['follow_ig']['tmp_name'];
+            $namafile1        = $_FILES['bukti']['name'];
+            $tempat1          = $_FILES['bukti']['tmp_name'];
             $ekstensiupload1  = explode('.', $namafile1);
             $ekstensiupload1  = strtolower (end($ekstensiupload1));    
             //Ganti Nama
@@ -186,114 +186,10 @@ if(mysqli_num_rows($select_histori) > 0){
             move_uploaded_file($tempat1, $targetPath1);
 
 
-            
-            //LIKE INSTAGRAM
-            $namafile2        = $_FILES['like_ig']['name'];
-            $tempat2          = $_FILES['like_ig']['tmp_name'];
-            $ekstensiupload2  = explode('.', $namafile2);
-            $ekstensiupload2  = strtolower (end($ekstensiupload2));    
-            //Ganti Nama
-            $like_ig          = uniqid();
-            $like_ig         .= ".";
-            $like_ig         .=$ekstensiupload2;   
-            $targetPath2     = '../../assets/sosmed/' . $like_ig;
-            move_uploaded_file($tempat2, $targetPath2);
-
-
-            
-            //FOLLOW LINKEDIN
-            $namafile3        = $_FILES['follow_linkedin']['name'];
-            $tempat3          = $_FILES['follow_linkedin']['tmp_name'];
-            $ekstensiupload3  = explode('.', $namafile3);
-            $ekstensiupload3  = strtolower (end($ekstensiupload3));    
-            //Ganti Nama
-            $follow_linkedin  = uniqid();
-            $follow_linkedin .= ".";
-            $follow_linkedin .= $ekstensiupload3;   
-            // move_uploaded_file($tempat, '../../assets/excel/'.$namafotobaru);
-            $targetPath3 = '../../assets/sosmed/' . $follow_linkedin;
-            move_uploaded_file($tempat3, $targetPath3);
-
-
-                        
-            //LIKE LINKEDIN
-            $namafile4        = $_FILES['like_linkedin']['name'];
-            $tempat4          = $_FILES['like_linkedin']['tmp_name'];
-            $ekstensiupload4  = explode('.', $namafile4);
-            $ekstensiupload4  = strtolower (end($ekstensiupload4));    
-            //Ganti Nama
-            $like_linkedin   = uniqid();
-            $like_linkedin  .= ".";
-            $like_linkedin  .= $ekstensiupload4;   
-            // move_uploaded_file($tempat, '../../assets/excel/'.$namafotobaru);
-            $targetPath4 = '../../assets/sosmed/' . $like_linkedin;
-            move_uploaded_file($tempat4, $targetPath4);
-
-                        
-
-            //SUBSCRIBE YOUTUBE
-            $namafile5        = $_FILES['subs_yt']['name'];
-            $tempat5          = $_FILES['subs_yt']['tmp_name'];
-            $ekstensiupload5  = explode('.', $namafile5);
-            $ekstensiupload5  = strtolower (end($ekstensiupload5));    
-            //Ganti Nama
-            $subs_yt  = uniqid();
-            $subs_yt .= ".";
-            $subs_yt .= $ekstensiupload5;   
-            // move_uploaded_file($tempat, '../../assets/excel/'.$namafotobaru);
-            $targetPath5 = '../../assets/sosmed/' . $subs_yt;
-            move_uploaded_file($tempat5, $targetPath5);
-
-
-            
-            //LIKE YOUTUBE
-            $namafile6        = $_FILES['like_yt']['name'];
-            $tempat6          = $_FILES['like_yt']['tmp_name'];
-            $ekstensiupload6  = explode('.', $namafile6);
-            $ekstensiupload6  = strtolower (end($ekstensiupload6));    
-            //Ganti Nama
-            $like_yt  = uniqid();
-            $like_yt .= ".";
-            $like_yt .= $ekstensiupload6;   
-            // move_uploaded_file($tempat, '../../assets/excel/'.$namafotobaru);
-            $targetPath6 = '../../assets/sosmed/' . $like_yt;
-            move_uploaded_file($tempat6, $targetPath6);
-
-
-
-            
-            //FOLLOW TWITTER
-            $namafile7        = $_FILES['follow_twitter']['name'];
-            $tempat7          = $_FILES['follow_twitter']['tmp_name'];
-            $ekstensiupload7  = explode('.', $namafile7);
-            $ekstensiupload7  = strtolower (end($ekstensiupload7));    
-            //Ganti Nama
-            $follow_twitter  = uniqid();
-            $follow_twitter .= ".";
-            $follow_twitter .= $ekstensiupload7;   
-            // move_uploaded_file($tempat, '../../assets/excel/'.$namafotobaru);
-            $targetPath7 = '../../assets/sosmed/' . $follow_twitter;
-            move_uploaded_file($tempat7, $targetPath7);
-
-
-                        
-            //FOLLOW FACEBOOK
-            $namafile8        = $_FILES['follow_fb']['name'];
-            $tempat8          = $_FILES['follow_fb']['tmp_name'];
-            $ekstensiupload8  = explode('.', $namafile8);
-            $ekstensiupload8  = strtolower (end($ekstensiupload8));    
-            //Ganti Nama
-            $follow_fb  = uniqid();
-            $follow_fb .= ".";
-            $follow_fb .= $ekstensiupload8;   
-            // move_uploaded_file($tempat, '../../assets/excel/'.$namafotobaru);
-            $targetPath8 = '../../assets/sosmed/' . $follow_fb;
-            move_uploaded_file($tempat8, $targetPath8);
-
 
             //insert bukti
-            $insert_bukti = mysqli_query($mysqli,"INSERT INTO penyimpanan (ID_CLIENT, FOLLOW_IG, LIKE_IG, FOLLOW_LINKEDIN, LIKE_LINKEDIN, SUBS_YT, LIKE_YT, TWITTER, FACEBOOK)
-                                                  VALUES  ('$idclient', '$follow_ig', '$like_ig', '$follow_linkedin', '$like_linkedin', '$subs_yt', '$like_yt', '$follow_twitter', '$follow_fb')");
+            $insert_bukti = mysqli_query($mysqli,"INSERT INTO penyimpanan (ID_CLIENT, BUKTI)
+                                                  VALUES  ('$idclient', '$follow_ig')");
 
                
             echo "<script>location='confirm_3.php?idprog=$idprog&idbatch=$idbatch&iddiskon=3';</script>";

@@ -1,3 +1,4 @@
 
-config/*
+
 client/method.php
+config/database.php

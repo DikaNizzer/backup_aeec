@@ -5,7 +5,8 @@ include_once('../../config/database.php');
 $idclient = $_GET['idclient'];
 
 // AMbil Data Sosmed
-$bukti    = mysqli_query($mysqli, "SELECT * FROM penyimpanan where ID_CLIENT = '$idclient'" );
+$bukti    = mysqli_query($mysqli, "SELECT * FROM penyimpanan where ID_CLIENT = '$idclient' 
+                                    order by ID_PENYIMPANAN ASC limit 1" );
 $ambil_data = $bukti->fetch_assoc();
 ?>
 
@@ -67,37 +68,10 @@ $ambil_data = $bukti->fetch_assoc();
                 <table class="table table-bordered"  width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Follow Instagram</th>    
-                            <td><a href="../../assets/sosmed/<?=$ambil_data['FOLLOW_IG'] ?>" target='_blank' class="btn btn-success">Lihat</a>  </td>
+                            <th>Bukti Follow Sosmed</th>    
+                            <td><a href="../../assets/sosmed/<?=$ambil_data['BUKTI'] ?>" target='_blank' class="btn btn-success">Lihat</a>  </td>
                         </tr>
-                        <tr>
-                            <th>Like Instagram</th>    
-                            <td><a href="../../assets/sosmed/<?=$ambil_data['LIKE_IG'] ?>" target='_blank' class="btn btn-success">Lihat</a>  </td>
-                        </tr>
-                        <tr>
-                            <th>Follow Linkedin</th>    
-                            <td><a href="../../assets/sosmed/<?=$ambil_data['FOLLOW_LINKEDIN'] ?>" target='_blank' class="btn btn-success">Lihat</a>  </td>
-                        </tr>
-                        <tr>
-                            <th>Like Linkedin</th>    
-                            <td><a href="../../assets/sosmed/<?=$ambil_data['LIKE_LINKEDIN'] ?>" target='_blank' class="btn btn-success">Lihat</a>  </td>
-                        </tr>
-                        <tr>
-                            <th>Subscribe Youtube</th>    
-                            <td><a href="../../assets/sosmed/<?=$ambil_data['SUBS_YT'] ?>" target='_blank' class="btn btn-success">Lihat</a>  </td>
-                        </tr>
-                        <tr>
-                            <th>Like Youtube</th>    
-                            <td><a href="../../assets/sosmed/<?=$ambil_data['LIKE_YT'] ?>" target='_blank' class="btn btn-success">Lihat</a>  </td>
-                        </tr>
-                        <tr>
-                            <th>Twitter</th>    
-                            <td><a href="../../assets/sosmed/<?=$ambil_data['TWITTER'] ?>" target='_blank' class="btn btn-success">Lihat</a>  </td>
-                        </tr>
-                        <tr>
-                            <th>Facebook</th>    
-                            <td><a href="../../assets/sosmed/<?=$ambil_data['FACEBOOK'] ?>" target='_blank' class="btn btn-success">Lihat</a>  </td>
-                        </tr>
+                        
                     </thead>
                 </table>   
 
