@@ -25,7 +25,7 @@ DELIMITER $$
 --
 -- Functions
 --
-CREATE DEFINER=`root`@`localhost` FUNCTION `cashback10` (`id` VARCHAR(10)) RETURNS INT(11)  BEGIN
+CREATE FUNCTION `cashback10` (`id` VARCHAR(10)) RETURNS INT(11)  BEGIN
 DECLARE hitung INT;
 SELECT INDIVIDU * 10/100 INTO hitung
 FROM program
@@ -33,7 +33,7 @@ WHERE ID_PROGRAM = id;
 RETURN hitung;
 END$$
 
-CREATE DEFINER=`root`@`localhost` FUNCTION `cashback5` (`id` VARCHAR(10)) RETURNS INT(11)  BEGIN
+CREATE FUNCTION `cashback5` (`id` VARCHAR(10)) RETURNS INT(11)  BEGIN
 DECLARE hitung INT;
 SELECT INDIVIDU * 5/100 INTO hitung
 FROM program
@@ -41,7 +41,7 @@ WHERE ID_PROGRAM = id;
 RETURN hitung;
 END$$
 
-CREATE DEFINER=`root`@`localhost` FUNCTION `voucher5` (`id` VARCHAR(10)) RETURNS INT(11)  BEGIN
+CREATE FUNCTION `voucher5` (`id` VARCHAR(10)) RETURNS INT(11)  BEGIN
 DECLARE hitung INT;
 SELECT INDIVIDU - (INDIVIDU * 5/100) INTO hitung
 FROM program
@@ -535,7 +535,7 @@ INSERT INTO `waktu` (`ID_WAKTU`, `WAKTU_MULAI`, `WAKTU_BERAKHIR`) VALUES
 --
 DROP TABLE IF EXISTS `full_program`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `full_program`  AS SELECT `p`.`ID_PROGRAM` AS `ID_PROGRAM`, `p`.`ID_KATEGORI` AS `ID_KATEGORI`, `p`.`NAMA_PROGRAM` AS `NAMA_PROGRAM`, `p`.`INDIVIDU` AS `INDIVIDU`, `p`.`KOLEKTIF` AS `KOLEKTIF`, `p`.`KORPORAT` AS `KORPORAT`, `p`.`DESKRIPSI` AS `DESKRIPSI`, `p`.`SESI` AS `SESI`, `p`.`IMAGE` AS `IMAGE`, `h`.`NAMA_HARI` AS `NAMA_HARI`, `w`.`WAKTU_MULAI` AS `WAKTU_MULAI`, `w`.`WAKTU_BERAKHIR` AS `WAKTU_BERAKHIR` FROM ((((`program` `p` join `detail_program` `d` on(`d`.`ID_PROGRAM` = `p`.`ID_PROGRAM`)) join `jadwal` `j` on(`d`.`ID_JADWAL` = `j`.`ID_JADWAL`)) join `hari` `h` on(`j`.`ID_HARI` = `h`.`ID_HARI`)) join `waktu` `w` on(`j`.`ID_WAKTU` = `w`.`ID_WAKTU`))  ;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `full_program`  AS SELECT `p`.`ID_PROGRAM` AS `ID_PROGRAM`, `p`.`ID_KATEGORI` AS `ID_KATEGORI`, `p`.`NAMA_PROGRAM` AS `NAMA_PROGRAM`, `p`.`INDIVIDU` AS `INDIVIDU`, `p`.`KOLEKTIF` AS `KOLEKTIF`, `p`.`KORPORAT` AS `KORPORAT`, `p`.`DESKRIPSI` AS `DESKRIPSI`, `p`.`SESI` AS `SESI`, `p`.`IMAGE` AS `IMAGE`, `h`.`NAMA_HARI` AS `NAMA_HARI`, `w`.`WAKTU_MULAI` AS `WAKTU_MULAI`, `w`.`WAKTU_BERAKHIR` AS `WAKTU_BERAKHIR` FROM ((((`program` `p` join `detail_program` `d` on(`d`.`ID_PROGRAM` = `p`.`ID_PROGRAM`)) join `jadwal` `j` on(`d`.`ID_JADWAL` = `j`.`ID_JADWAL`)) join `hari` `h` on(`j`.`ID_HARI` = `h`.`ID_HARI`)) join `waktu` `w` on(`j`.`ID_WAKTU` = `w`.`ID_WAKTU`))  ;
 
 -- --------------------------------------------------------
 
@@ -544,7 +544,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `peserta`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `peserta`  AS SELECT `c`.`ID_CLIENT` AS `ID_CLIENT`, `c`.`ID_USER` AS `ID_USER`, `c`.`NAMA` AS `NAMA`, `c`.`JK` AS `JK`, `c`.`NO_TELP` AS `NO_TELP`, `c`.`NPWP` AS `NPWP`, `c`.`ALAMAT_NPWP` AS `ALAMAT_NPWP`, `c`.`ALAMAT_RUMAH` AS `ALAMAT_RUMAH`, `c`.`INSTANSI` AS `INSTANSI`, `c`.`JABATAN` AS `JABATAN`, `c`.`BERKAS_NPWP` AS `BERKAS_NPWP`, `c`.`ALUMNI` AS `ALUMNI`, `c`.`CREATED_AT` AS `CREATED_AT`, `u`.`EMAIL` AS `EMAIL`, `u`.`AEEC_EMAIL` AS `AEEC_EMAIL`, `u`.`AEEC_NEWSLETTER` AS `AEEC_NEWSLETTER`, `f`.`NAMA_FAKULTAS` AS `NAMA_FAKULTAS` FROM ((`user` `u` join `client` `c` on(`u`.`ID_USER` = `c`.`ID_USER`)) join `fakultas` `f` on(`c`.`ID_FAKULTAS` = `f`.`ID_FAKULTAS`))  ;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `peserta`  AS SELECT `c`.`ID_CLIENT` AS `ID_CLIENT`, `c`.`ID_USER` AS `ID_USER`, `c`.`NAMA` AS `NAMA`, `c`.`JK` AS `JK`, `c`.`NO_TELP` AS `NO_TELP`, `c`.`NPWP` AS `NPWP`, `c`.`ALAMAT_NPWP` AS `ALAMAT_NPWP`, `c`.`ALAMAT_RUMAH` AS `ALAMAT_RUMAH`, `c`.`INSTANSI` AS `INSTANSI`, `c`.`JABATAN` AS `JABATAN`, `c`.`BERKAS_NPWP` AS `BERKAS_NPWP`, `c`.`ALUMNI` AS `ALUMNI`, `c`.`CREATED_AT` AS `CREATED_AT`, `u`.`EMAIL` AS `EMAIL`, `u`.`AEEC_EMAIL` AS `AEEC_EMAIL`, `u`.`AEEC_NEWSLETTER` AS `AEEC_NEWSLETTER`, `f`.`NAMA_FAKULTAS` AS `NAMA_FAKULTAS` FROM ((`user` `u` join `client` `c` on(`u`.`ID_USER` = `c`.`ID_USER`)) join `fakultas` `f` on(`c`.`ID_FAKULTAS` = `f`.`ID_FAKULTAS`))  ;
 
 --
 -- Indexes for dumped tables

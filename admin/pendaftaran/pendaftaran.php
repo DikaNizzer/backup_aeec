@@ -80,6 +80,7 @@ include_once('../../config/database.php');
                             <th>Status</th>
                             <th>Detail</th>                      
                             <th>VA</th>
+                            <th>Hapus</th>
                     </tr>                    
                     </thead>
                     <tbody>
@@ -114,6 +115,9 @@ include_once('../../config/database.php');
                             </td>                     
                             <td>
                                 <a href="add.php?id=<?php echo $data_daftar['ID_PENDAFTARAN']; ?>" class="btn btn-success" target="_blank">Add</a>                            
+                            </td>
+                            <td>
+                                <a href="delete.php?id=<?php echo $data_daftar['ID_PENDAFTARAN']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin ?')" >Delete</a>
                             </td>         
                         </tr>   
                         <?php

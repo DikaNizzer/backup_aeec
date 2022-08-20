@@ -298,11 +298,7 @@ $reguler = mysqli_query($mysqli,"SELECT p.*, b.*
                         
                         <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3"> 
                         <?php echo 'Kuota : '.$spare['KUOTA'] ?>
-                        </h5>
-
-                         
-                       <!-- <a href="../formregis/jenisdaftar.php?idprog=<?=$spare['ID_PROGRAM'] ?>&idbatch=<?=$spare['ID_BATCH'] ?>" class="btn btn-primary w-100 me-1 mb-0">DAFTAR</a> -->
-                      
+                        </h5>  
                       </div>
                     </div> 
                     <a href="../formregis/jenisdaftar.php?idprog=<?=$spare['ID_PROGRAM'] ?>&idbatch=<?=$spare['ID_BATCH'] ?>" class="btn btn-primary daftar">DAFTAR</a>
