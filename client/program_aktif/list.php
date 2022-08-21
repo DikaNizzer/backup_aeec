@@ -15,7 +15,7 @@ $pendaftaran = mysqli_query($mysqli, "SELECT * From client
                                         join batch_program
                                         on pendaftaran.ID_BATCH = batch_program.ID_BATCH
                                         where histori.STATUS = 1
-                                        AND batch_program.TGL_BERAKHIR > '$tgl'
+                                        AND batch_program.TGL_BERAKHIR >= '$tgl'
                                         and client.ID_USER = '$iduser'");
 $data_daftar = $pendaftaran->fetch_assoc();
 

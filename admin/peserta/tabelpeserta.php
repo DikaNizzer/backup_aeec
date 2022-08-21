@@ -161,8 +161,8 @@ $select_client = mysqli_query($mysqli, "SELECT c.*, u.*, p.*, h.ID_HISTORI
                             <th>NPWP</th>                         
                             <th>Tanggal Pendaftaran</th>
                             <th>Nilai</th>
-                            <!-- <th>Edit</th>
-                            <th>Delete</th> -->
+                            <th>Detail</th>
+                            <!-- <th>Delete</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -179,6 +179,7 @@ $select_client = mysqli_query($mysqli, "SELECT c.*, u.*, p.*, h.ID_HISTORI
                             <td> <?php echo $data_client['TGL_PENDAFTARAN']; ?></td>            
                             <!-- <td><a href="nilai.php?id=<?=$data_client['ID_CLIENT']?>" class="btn btn-primary">Lihat</a></td>  -->
                             <td><a href="../nilai/nilai.php?id_history=<?= $data_client['ID_HISTORI']; ?>&idbatch=<?=$id?>" class="btn btn-primary">Lihat</a></td> 
+                            <td><a href="../client/detail.php?id=<?= $data_client['ID_CLIENT']; ?>" class="btn btn-warning">Detail</a></td> 
                         </tr>
                         <?php
                             $no++;

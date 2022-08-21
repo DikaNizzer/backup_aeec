@@ -65,7 +65,9 @@ include_once('../../config/database.php');
 
     <!-- Basic Tables start -->
     <?php
-    $query_peserta = "SELECT * FROM peserta WHERE ID_CLIENT = '".$_GET['id']."' ";
+    $id             = $_GET['id'];
+    $query_peserta = "SELECT * from client
+                        where ID_CLIENT = '$id' ";
     $tabel_peserta = mysqli_query($mysqli, $query_peserta);    
     $data_peserta  = $tabel_peserta->fetch_assoc();  
     ?>
@@ -216,7 +218,7 @@ include_once('../../config/database.php');
                                                                     SET NAMA='$nama',JK='$jk', NO_TELP='$no_telp',
                                                                         NPWP='$npwp', ALAMAT_NPWP='$alamat_npwp',
                                                                         ALAMAT_RUMAH='$alamat_rumah', INSTANSI='$instansi',
-                                                                        JABATAN='$jabatan', BERKAS_NPWP='$berkas'
+                                                                        JABATAN='$jabatan'
                                                                     WHERE ID_CLIENT='" . $_GET['id'] ."'");
 
                 

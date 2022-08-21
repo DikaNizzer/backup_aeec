@@ -1,11 +1,28 @@
 <?php 
 //Cek Login
 require_once("../auth/auth.php"); 
-
-
 require '../method.php';
 
+$idbatch = $_GET['idbatch'];
 $id = $_GET['idprog'];
+
+// Untuk cek harga gratis
+$batch_program = query("SELECT DISTINCT p.*, b.* 
+FROM batch_program b, program p
+WHERE  p.ID_PROGRAM = b.ID_PROGRAM
+AND b.ID_BATCH = '$idbatch'");
+foreach($batch_program as $cek_harga){
+}
+
+if($cek_harga['INDIVIDU'] === '0' || $cek_harga['INDIVIDU'] === '0'|| $cek_harga['KOLEKTIF'] === '0'|| $cek_harga['KORPORAT'] === '0'||
+    $cek_harga['B_INDIVIDU'] === '0'|| $cek_harga['B_KOLEKTIF'] === '0'|| $cek_harga['B_KORPORAT'] === '0'){
+        // JIka ada yang gratis akan masuk kesini dan akan dialihkan ke halaman gratis_cek.php
+        echo "<script> 
+            document.location.href = 'gratis_cek.php?idprog=$id&idbatch=$idbatch';
+            </script>";
+        exit;
+}
+
 $program = query("SELECT * FROM program where ID_PROGRAM = '$id'");
 foreach($program as $hasil){
 }
@@ -80,6 +97,8 @@ foreach($program as $hasil){
                         <div class="card" >
                             <div class="card-header">
                             <h4><?= $hasil['NAMA_PROGRAM'] ?><h4>
+                            
+
                             </div>
                             <div class="card-body">
                                 

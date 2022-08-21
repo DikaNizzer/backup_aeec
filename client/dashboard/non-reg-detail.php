@@ -206,6 +206,15 @@ h1.heading {
   text-transform: uppercase
 }
 
+.daftar{
+  position: relative;
+  margin-bottom : 0px;
+  margin-left : 20px;
+  width : 100px;
+  z-index:1;
+  flex-wrap: wrap;
+  align-content: flex-end;
+}
 </style>
 
 <link rel="stylesheet" href="../../assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
@@ -283,14 +292,11 @@ $reguler = mysqli_query($mysqli,"SELECT b.*
                         
                         <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3"> 
                         <?php echo 'Kuota : '.$spare['KUOTA'] ?>
-                        </h5>
-
-                       <a href="../formregis/jenisdaftar.php?idprog=<?=$spare['ID_PROGRAM'] ?>&idbatch=<?=$spare['ID_BATCH'] ?>" class="btn btn-primary w-100 mt-4 mb-0">DAFTAR</a>
-
-                        
+                        </h5>                        
                                       
                       </div>
                     </div> 
+                    <a href="../formregis/jenisdaftar.php?idprog=<?=$spare['ID_PROGRAM'] ?>&idbatch=<?=$spare['ID_BATCH'] ?>" class="btn btn-primary daftar">DAFTAR</a>
                   </div>
                 </div>
       <?php }?>

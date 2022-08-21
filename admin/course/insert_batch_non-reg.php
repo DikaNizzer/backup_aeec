@@ -213,8 +213,8 @@ include_once('../../config/database.php');
 
                 //insert batch_program
                 
-                $program       = mysqli_query($mysqli,"INSERT INTO batch_program (ID_BATCH, ID_PROGRAM, NAMA_CLASS, TGL_MULAI, WAKTU_MULAI, WAKTU_BERAKHIR, B_INDIVIDU, B_KOLEKTIF, B_KORPORAT,B_PPN, KUOTA IMAGE)
-                                                       VALUES ('$id_batch', '$id_program', '$nama_class','$tgl_mulai', '$waktu_mulai','$waktu_berakhir', '$individu_ppn', '$kolektif_ppn', '$korporat_ppn', '$ppn','$kuota'.'$gambar')");
+                $program       = mysqli_query($mysqli,"INSERT INTO batch_program (ID_BATCH, ID_PROGRAM, NAMA_CLASS, TGL_MULAI,TGL_BERAKHIR , WAKTU_MULAI, WAKTU_BERAKHIR, B_INDIVIDU, B_KOLEKTIF, B_KORPORAT,B_PPN, KUOTA, IMAGE)
+                                                       VALUES ('$id_batch', '$id_program', '$nama_class','$tgl_mulai', '$tgl_mulai', '$waktu_mulai','$waktu_berakhir', '$individu_ppn', '$kolektif_ppn', '$korporat_ppn', '$ppn','$kuota','$gambar')");
 
 
                 

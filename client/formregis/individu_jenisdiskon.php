@@ -10,8 +10,9 @@ foreach($program as $hasil){
 // Ambil ID USER
 $iduser = $_SESSION["user"]["ID_USER"];
 
-$program = mysqli_query($mysqli,"SELECT * FROM kategori_program");
-$nama = mysqli_query($mysqli,"SELECT * FROM batch_program join program");
+
+
+
 ?>
 
 <!-- BAGIAN HEADER -->

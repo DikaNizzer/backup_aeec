@@ -119,6 +119,9 @@ foreach($daftar as $hasil){
                             ?>     
                             </td>
                         </tr>
+                        <?php
+                            if($hasil['TAGIHAN'] != '0' ):
+                        ?>
                         <tr>
                             <th>Virtual Account</th>    
                             <td>
@@ -151,23 +154,32 @@ foreach($daftar as $hasil){
                             ?>     
                             </td>
                         </tr>
+                        <?php
+                            endif;
+                        ?>
                         
                     </thead>
                 </table>   
-                <a href="pendaftaran.php" class="btn btn-primary">Kembali</a>  
+                <a href="pendaftaran.php" class="btn btn-primary">Kembali</a>
                 <?php
+                    if($hasil['TAGIHAN'] != '0' ):
+                ?>  
+                        <?php
                             $select_pembayaran = mysqli_query($mysqli, "SELECT * FROM pembayaran WHERE ID_PENDAFTARAN = '$id'");
 
-                            if($hasil['VIRTUAL_ACC']!=null & mysqli_num_rows($select_pembayaran) == 0){
-                            ?>
-                              <a href="bayar.php?id=<?=$hasil['ID_PENDAFTARAN']?>" class="btn btn-success">Bayar</a>
-                            <?php
+                            if($hasil['VIRTUAL_ACC']!=null & mysqli_num_rows($select_pembayaran) == 0 ){
+                        ?>
+                            <a href="bayar.php?id=<?=$hasil['ID_PENDAFTARAN']?>" class="btn btn-success">Bayar</a>
+                        <?php
                             }else{
-                            ?>
-                                 <a href="" class="btn btn-secondary">Bayar</a>
-                            <?php
-                            }
-                            ?>          
+                        ?>
+                                <a href="" class="btn btn-secondary">Bayar</a>
+                        <?php
+                                }
+                        ?>  
+                <?php
+                    endif;
+                ?>        
             </div>
         </div>
         

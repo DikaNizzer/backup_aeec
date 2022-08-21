@@ -251,7 +251,7 @@ h1.heading {
 <!-- BAGIAN UTAMA CODING [MULAI main-content] -->
 <?php 
 
-$reguler = mysqli_query($mysqli,"SELECT p.* 
+$reguler = mysqli_query($mysqli,"SELECT DISTINCT p.* 
                 FROM batch_program b, program p
                 WHERE  p.ID_PROGRAM = b.ID_PROGRAM
                 AND p.ID_KATEGORI = 'NRC'
