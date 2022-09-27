@@ -265,7 +265,15 @@ $reguler = mysqli_query($mysqli,"SELECT p.*, b.*
                 FROM batch_program b, program p
                 WHERE  p.ID_PROGRAM = b.ID_PROGRAM
                 AND p.ID_KATEGORI = 'RC'
-                AND b.STATUS = '1';");
+                AND b.STATUS = '1'
+                AND p.ID_PROGRAM != 'BRV';");
+
+$brevet = mysqli_query($mysqli,"SELECT p.*, b.* 
+                FROM batch_program b, program p
+                WHERE  p.ID_PROGRAM = b.ID_PROGRAM
+                AND p.ID_KATEGORI = 'RC'
+                AND b.STATUS = '1'
+                AND p.ID_PROGRAM = 'BRV';");
 
 ?>
             <!-- HALAMAN UTAMA -->
@@ -275,6 +283,37 @@ $reguler = mysqli_query($mysqli,"SELECT p.*, b.*
         <div class="card mb-3">
             <div class="card-body">
               <div class="row">
+
+    <!-- KHUSUS BREVET -->
+    <?php 
+		while($spare = mysqli_fetch_array($brevet)){ ?>
+    <?php
+    $image   = mysqli_query($mysqli, "SELECT IMAGE FROM program WHERE ID_PROGRAM = '".$spare['ID_PROGRAM']."'");
+    $cek     = $image->fetch_assoc();
+    ?>
+                <div class="mb-3 col-md-8 col-lg-3">
+                  <div class="border rounded h-100 d-flex flex-column justify-content-between pb-3">
+                    <div class="overflow-hidden">
+                      <div class="position-relative rounded-top overflow-hidden">
+                          <img class="img-fluid rounded-top" style="width:100%; height: 200px; object-fit:cover;" 
+                           src="../../assets/images/program/<?=$cek['IMAGE'] ?>" alt="">
+                          <span class="badge badge-pill badge-success position-absolute r-0 t-0 mt-2 mr-2 z-index-2">New</span>
+                        </div> 
+
+                        <div class="p-3 pe-1 pb-0">
+                        <h5 class="fs-0"><a class="text-dark" href="">
+                        <?= $spare['NAMA_PROGRAM']  ?>
+                        </a></h5>
+                        
+                        <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3"> 
+                        <?php echo 'Kuota : '.$spare['KUOTA'] ?>
+                        </h5>  
+                      </div>
+                    </div> 
+                    <a href="../formregis/brevet_jenisdaftar.php?idprog=<?=$spare['ID_PROGRAM'] ?>&idbatch=<?=$spare['ID_BATCH'] ?>" class="btn btn-primary daftar">DAFTAR</a>
+                  </div>
+                </div>
+      <?php }?>
 
     <?php 
 		while($spare = mysqli_fetch_array($reguler)){ ?>

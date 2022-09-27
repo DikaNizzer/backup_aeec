@@ -72,8 +72,6 @@ if( isset($_POST["login"]) ) {
         $user = mysqli_fetch_assoc($cekid);
 
         if( password_verify($password, $user["PASSWORD"]) ){
-
-            
             // login sukses, alihkan ke halaman timeline
             if($user['ROLE'] == 'user'){
                 // buat Session
@@ -96,8 +94,7 @@ if( isset($_POST["login"]) ) {
             echo "<script> 
             alert('Login Gagal. Password atau Username salah, Silahkan Coba Lagi !!');
             document.location.href = 'login.php';
-            </script>";
-            
+            </script>"; 
         }
     }else{
         echo "<script> 

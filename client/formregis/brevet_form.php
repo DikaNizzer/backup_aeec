@@ -5,6 +5,7 @@ require_once("../../config/database.php");
 // Tangkap Data
 $id = $_GET['idprog'];
 $idbatch = $_GET['idbatch'];
+$jenisDaftar = $_GET['jenisDaftar'];
 $iduser = $_SESSION["user"]["ID_USER"];
 $email = $_SESSION["user"]["EMAIL"];
 
@@ -312,8 +313,14 @@ foreach($program as $hasil){
             }
 
             
+            if($jenisDaftar == 2){
+                echo "<script> 
+                document.location.href = 'brevet_upload_excel.php?idprog=$id&idbatch=$idbatch&jenisDaftar=$jenisDaftar';
+                </script>";
+            }else{
+                echo "<script>window.location.href='brevet_confirm.php?idprog=$id&idbatch=$idbatch&jenisDaftar=$jenisDaftar';</script>";
+            }
             
-            echo "<script>window.location.href='confirm.php?idprog=$id&idbatch=$idbatch&iddiskon=0';</script>";
         
         }
 
