@@ -266,14 +266,15 @@ $reguler = mysqli_query($mysqli,"SELECT p.*, b.*
                 WHERE  p.ID_PROGRAM = b.ID_PROGRAM
                 AND p.ID_KATEGORI = 'RC'
                 AND b.STATUS = '1'
-                AND p.ID_PROGRAM != 'BRV';");
+                AND p.ID_PROGRAM != 'BRVON'
+                AND p.ID_PROGRAM != 'BRVOFF';");
 
 $brevet = mysqli_query($mysqli,"SELECT p.*, b.* 
                 FROM batch_program b, program p
                 WHERE  p.ID_PROGRAM = b.ID_PROGRAM
                 AND p.ID_KATEGORI = 'RC'
                 AND b.STATUS = '1'
-                AND p.ID_PROGRAM = 'BRV';");
+                AND (p.ID_PROGRAM = 'BRVON' OR p.ID_PROGRAM = 'BRVOFF');");
 
 ?>
             <!-- HALAMAN UTAMA -->
@@ -314,7 +315,7 @@ $brevet = mysqli_query($mysqli,"SELECT p.*, b.*
                   </div>
                 </div>
       <?php }?>
-
+<!-- END BREVET -->
     <?php 
 		while($spare = mysqli_fetch_array($reguler)){ ?>
     <?php
