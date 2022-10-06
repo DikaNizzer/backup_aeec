@@ -22,7 +22,10 @@ if($kategori == 'RC'){
     echo " <script>location='detail_regular.php?id=$id_program';</script>";
 } else if($kategori == 'NRC'){
     echo " <script>location='detail_non-reg.php?id=$id_program';</script>";
-} else{
+}else if($kategori == 'WS'){
+    echo " <script>location='detail_workshop.php?id=$id_program';</script>";
+}
+ else{
     echo " <script>location='in-house.php';</script>";
 }
 

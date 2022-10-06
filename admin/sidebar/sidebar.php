@@ -45,12 +45,14 @@
                     <li class="submenu-item  <?= !!strpos($_SERVER['REQUEST_URI'], 'reguler') ? 'active' : '' ?>">
                         <a href="../course/reguler.php">Regular Class</a>
                     </li>
-                    <li class="submenu-item  <?= !!strpos($_SERVER['REQUEST_URI'], 'in-house') ? 'active' : '' ?>">
-                        <a href="../course/in-house.php">In-House Training</a>
-                    </li>
-           
                     <li class="submenu-item <?= !!strpos($_SERVER['REQUEST_URI'], 'non-reg') ? 'active' : '' ?>">
                         <a href="../course/non-reg.php">Non-Regular Class</a>
+                    </li>
+                    <li class="submenu-item <?= !!strpos($_SERVER['REQUEST_URI'], 'workshop') ? 'active' : '' ?>">
+                        <a href="../course/workshop.php">Workshop Class</a>
+                    </li>
+                    <li class="submenu-item  <?= !!strpos($_SERVER['REQUEST_URI'], 'in-house') ? 'active' : '' ?>">
+                        <a href="../course/in-house.php">In-House Training</a>
                     </li>
                     
                 </ul>

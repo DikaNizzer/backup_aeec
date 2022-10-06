@@ -17,7 +17,10 @@ if($kategori == 'RC'){
     echo " <script>location='reguler.php';</script>";
 } else if($kategori == 'NRC'){
     echo " <script>location='non-reg.php';</script>";
-} else{
+}else if($kategori == 'WS'){
+    echo " <script>location='workshop.php';</script>";
+}
+ else{
     echo " <script>location='in-house.php';</script>";
 }
 

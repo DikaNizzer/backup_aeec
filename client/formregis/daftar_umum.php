@@ -8,6 +8,74 @@ $idbatch = $_GET['idbatch'];
 $iduser = $_SESSION["user"]["ID_USER"];
 $email = $_SESSION["user"]["EMAIL"];
 
+// Ketika Daftar
+if(isset($_POST['tambah'])){
+           
+    $nama       = $_POST['nama'];
+    $jk         = $_POST['jk'];
+    $notelp     = $_POST['no_telp'];
+    $npwp       = $_POST['npwp'];
+    $alamatnpwp = $_POST['alamat_npwp'];
+    $alamat     = $_POST['alamat_rumah'];
+    $instansi   = $_POST['instansi'];
+    $jabatan    = $_POST['jabatan'];
+    $alumni     = $_POST['alumni'];
+    $fakultas   = $_POST['fakultas'];
+    $iduser     = $_SESSION["user"]["ID_USER"];
+
+    // UNTUK BUKTI NPWP
+    $berkas_npwp           = $_FILES['berkas_npwp']['name'];
+    $lokasi               = $_FILES['berkas_npwp']['tmp_name'];
+
+    //hanya boleh up Exce;
+    $ekstensiupload = explode('.', $berkas_npwp);
+    $ekstensiupload = strtolower (end($ekstensiupload));
+
+    //upload
+    //Ganti Nama
+    $namafotobaru= uniqid();
+    $namafotobaru.= ".";
+    $namafotobaru.=$ekstensiupload;
+
+    move_uploaded_file($lokasi, '../../assets/NPWP/'.$namafotobaru);
+
+     // Jika Sudah Punya CLient AKan DIlempar
+    $cekCLient = mysqli_query($mysqli,"SELECT * FROM client where ID_USER = $iduser ");
+    $sql = "SELECT * FROM client where ID_USER = $iduser";
+    // header("location: ../dashboard/regular.php", true, 301);
+        //membuat kode di bawah header tidak diproses oleh website sehingga lebih aman
+    
+
+    $result = $mysqli->query($sql);
+    if ($result->num_rows > 0) {
+        // Kalau Ada Data
+        echo "<script>alert('Maaf, satu email hanya boleh mendaftarkan satu data diri. ');</script>";
+        echo "<script>alert('Silahkan melakukan registrasi akun baru untuk melakukan pendaftaran dengan data lain.')</script>";
+        echo "<script> 
+        document.location.href = '../dashboard/regular.php';
+        </script>";
+
+        exit();
+    }else{
+        if($fakultas != null){
+            $client         = mysqli_query($mysqli, "INSERT INTO client (ID_USER, NAMA, JK, NO_TELP, NPWP, ALAMAT_NPWP, ALAMAT_RUMAH, INSTANSI, BERKAS_NPWP, ALUMNI, ID_FAKULTAS, JABATAN) 
+                                                     VALUES ('$iduser','$nama', '$jk', '$notelp', '$npwp', '$alamatnpwp', '$alamat', '$instansi', '$namafotobaru', '$alumni','$fakultas', '$jabatan')");
+        }else{
+            $client         = mysqli_query($mysqli, "INSERT INTO client (ID_USER, NAMA, JK, NO_TELP, NPWP, ALAMAT_NPWP, ALAMAT_RUMAH, INSTANSI, BERKAS_NPWP, ALUMNI, JABATAN) 
+                                                     VALUES ('$iduser','$nama', '$jk', '$notelp', '$npwp', '$alamatnpwp', '$alamat', '$instansi', '$namafotobaru', '$alumni', '$jabatan')");
+        }
+    
+        echo "<script>window.location.href='confirm.php?idprog=$id&idbatch=$idbatch&iddiskon=0';</script>";
+        exit();
+    }
+
+    exit();
+    
+       
+
+}
+// END TOMBOL DAFTAR
+
 // Cek apakah dia udah pernah daftar belum
 $client = mysqli_query($mysqli,"SELECT * FROM client where ID_USER = '$iduser'");
 if(mysqli_num_rows($client) > 0){  
@@ -259,62 +327,3 @@ foreach($program as $hasil){
 </body>
 
 </html>
-
-
-<?php
-        
-        if(isset($_POST['tambah'])){
-           
-            $nama       = $_POST['nama'];
-            $jk         = $_POST['jk'];
-            $notelp     = $_POST['no_telp'];
-            $npwp       = $_POST['npwp'];
-            $alamatnpwp = $_POST['alamat_npwp'];
-            $alamat     = $_POST['alamat_rumah'];
-            $instansi   = $_POST['instansi'];
-            $jabatan    = $_POST['jabatan'];
-            $alumni     = $_POST['alumni'];
-            $fakultas   = $_POST['fakultas'];
-            $iduser     = $_SESSION["user"]["ID_USER"];
-
-            // UNTUK BUKTI NPWP
-            $berkas_npwp           = $_FILES['berkas_npwp']['name'];
-            $lokasi               = $_FILES['berkas_npwp']['tmp_name'];
-
-            //hanya boleh up Exce;
-            $ekstensiupload = explode('.', $berkas_npwp);
-            $ekstensiupload = strtolower (end($ekstensiupload));
-
-            //upload
-            //Ganti Nama
-            $namafotobaru= uniqid();
-            $namafotobaru.= ".";
-            $namafotobaru.=$ekstensiupload;
-
-            move_uploaded_file($lokasi, '../../assets/NPWP/'.$namafotobaru);
-
-                         // Jika Sudah Punya CLient AKan DIlempar
-            
-            $cekCLient = mysqli_query($mysqli,"SELECT * FROM client where ID_USER = $iduser ");
-            if(mysqli_num_rows($cekCLient) > 0){  
-                //membuat metode redirect dengan kode 301
-                header("location: ../dashboard/regular.php", true, 301);
-                //membuat kode di bawah header tidak diproses oleh website sehingga lebih aman
-                exit();
-            }else{
-                if($fakultas != null){
-                    $client         = mysqli_query($mysqli, "INSERT INTO client (ID_USER, NAMA, JK, NO_TELP, NPWP, ALAMAT_NPWP, ALAMAT_RUMAH, INSTANSI, BERKAS_NPWP, ALUMNI, ID_FAKULTAS, JABATAN) 
-                                                             VALUES ('$iduser','$nama', '$jk', '$notelp', '$npwp', '$alamatnpwp', '$alamat', '$instansi', '$namafotobaru', '$alumni','$fakultas', '$jabatan')");
-                }else{
-                    $client         = mysqli_query($mysqli, "INSERT INTO client (ID_USER, NAMA, JK, NO_TELP, NPWP, ALAMAT_NPWP, ALAMAT_RUMAH, INSTANSI, BERKAS_NPWP, ALUMNI, JABATAN) 
-                                                             VALUES ('$iduser','$nama', '$jk', '$notelp', '$npwp', '$alamatnpwp', '$alamat', '$instansi', '$namafotobaru', '$alumni', '$jabatan')");
-                }
-            }
-
-            
-            
-            echo "<script>window.location.href='confirm.php?idprog=$id&idbatch=$idbatch&iddiskon=0';</script>";
-        
-        }
-
-?>
