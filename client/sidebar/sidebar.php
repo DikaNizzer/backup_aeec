@@ -32,12 +32,14 @@
                     <li class="submenu-item  <?= !!strpos($_SERVER['REQUEST_URI'], 'regular') ? 'active' : '' ?>">
                         <a href="../dashboard/regular.php">Regular Class</a>
                     </li>
-                    <li class="submenu-item  <?= !!strpos($_SERVER['REQUEST_URI'], 'in-house') ? 'active' : '' ?>">
-                        <a href="../dashboard/in-house.php">In-House Training</a>
-                    </li>
-           
                     <li class="submenu-item <?= !!strpos($_SERVER['REQUEST_URI'], 'non-reg') ? 'active' : '' ?>">
                         <a href="../dashboard/non-reg.php">Non-Regular Class</a>
+                    </li>
+                    <li class="submenu-item <?= !!strpos($_SERVER['REQUEST_URI'], 'workshop') ? 'active' : '' ?>">
+                        <a href="../dashboard/workshop.php">Workshop Class</a>
+                    </li>
+                    <li class="submenu-item  <?= !!strpos($_SERVER['REQUEST_URI'], 'in-house') ? 'active' : '' ?>">
+                        <a href="../dashboard/in-house.php">In-House Training</a>
                     </li>
                     
                 </ul>
